@@ -4,6 +4,7 @@ import { of, Observable } from "rxjs";
 import { catchError, mapTo, tap } from "rxjs/operators";
 import { HttpClient, HttpParams, HttpHeaders } from "@angular/common/http";
 import { TokenDetails } from "./token.details.model";
+import { Router } from "@angular/router";
 
 export const IGNORE_TOKEN = "ignoreToken";
 
@@ -14,7 +15,7 @@ export class AuthService {
   private readonly JWT_TOKEN = "JWT_TOKEN";
   private readonly REFRESH_TOKEN = "REFRESH_TOKEN";
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   login(user: { username: string; password: string }): Observable<boolean> {
     const body = new HttpParams()
@@ -81,5 +82,18 @@ export class AuthService {
           this.storeTokens(tokens);
         })
       );
+  }
+
+  isLoggedIn() {
+    return !!this.getJwtToken();
+  }
+
+  logout() {
+    this.removeTokens();
+    this.router.navigate(["/login"]);
+  }
+  private removeTokens() {
+    localStorage.removeItem(this.JWT_TOKEN);
+    localStorage.removeItem(this.REFRESH_TOKEN);
   }
 }
