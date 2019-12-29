@@ -1,0 +1,51 @@
+<form [formGroup]="loginForm" (ngSubmit)="login()">
+  <div class="container">
+    <label for="uname"><b>Username</b></label>
+    <input
+      type="text"
+      placeholder="Enter Username"
+      formControlName="username"
+      required
+    />
+
+    <label for="psw"><b>Password</b></label>
+    <input
+      type="password"
+      placeholder="Enter Password"
+      formControlName="password"
+      required
+    />
+
+    <button type="submit">Login</button>
+  </div>
+
+  <!-- <input
+    matInput
+    type="text"
+    id="username"
+    placeholder="Username"
+    autocomplete="off"
+    formControlName="username"
+    required
+  />
+
+  <input
+    matInput
+    type="password"
+    id="password"
+    placeholder="Password"
+    formControlName="password"
+    required
+  />
+
+  <div class="actions">
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="!loginForm.valid"
+    >
+      LOG IN
+    </button>
+  </div> -->
+</form>
