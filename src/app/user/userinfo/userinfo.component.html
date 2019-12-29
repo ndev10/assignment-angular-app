@@ -1,1 +1,5 @@
-<p>userinfo works!</p>
+<p>User Info!</p>
+<div *ngIf="userInfo">
+  <div>{{ userInfo.firstName }}</div>
+  <div>{{ userInfo.lastName }}</div>
+</div>

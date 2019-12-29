@@ -5,6 +5,8 @@ import { catchError, mapTo, tap } from "rxjs/operators";
 import { HttpClient, HttpParams, HttpHeaders } from "@angular/common/http";
 import { TokenDetails } from "./token.details.model";
 
+export const IGNORE_TOKEN = "ignoreToken";
+
 @Injectable({
   providedIn: "root"
 })
@@ -45,5 +47,39 @@ export class AuthService {
   private storeTokens(tokenDetails: TokenDetails) {
     localStorage.setItem(this.JWT_TOKEN, tokenDetails.access_token);
     localStorage.setItem(this.REFRESH_TOKEN, tokenDetails.refresh_token);
+  }
+
+  getJwtToken() {
+    return localStorage.getItem(this.JWT_TOKEN);
+  }
+
+  getRefreshToken() {
+    return localStorage.getItem(this.REFRESH_TOKEN);
+  }
+
+  refreshToken() {
+    const refreshTokenUrl = environment.oauthAPIBaseURL + "/oauth/token";
+    const params = new HttpParams().set(IGNORE_TOKEN, "true");
+
+    const body = new HttpParams()
+      .set("grant_type", "refresh_token")
+      .set("client_id", environment.clientId)
+      .set("refresh_token", this.getRefreshToken());
+    const httpHeader = new HttpHeaders()
+      .set("Content-Type", "application/x-www-form-urlencoded; charset=utf-8")
+      .append(
+        "Authorization",
+        "Basic " + btoa(`${environment.clientId}:${environment.clientSecret}`)
+      );
+    return this.http
+      .post<TokenDetails>(refreshTokenUrl, body.toString(), {
+        headers: httpHeader,
+        params
+      })
+      .pipe(
+        tap((tokens: TokenDetails) => {
+          this.storeTokens(tokens);
+        })
+      );
   }
 }
