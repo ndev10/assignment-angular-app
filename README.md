@@ -15,3 +15,8 @@ Application has two main routes
 http://localhost:4200/login and http://localhost:4200/user-info.. If user is not  log in then it will go to the login route. However if user is already login in, it will rediret to user-info route.
 
 There is a token intercepor which takes care of token expration.. so if user hits user-info route and token is already expired, it will regenerate the token by hitting expire token api and hit the api again.. So all the thing happened behind the scene and user never needs to login again.
+
+To login into the app please use following credentials
+
+username: john <br />
+password: password
