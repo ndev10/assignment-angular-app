@@ -1,0 +1,36 @@
+.main {
+  margin: 0 auto;
+  max-width: 500px;
+}
+.info {
+  border: 0.5px solid #fff;
+  background: #4facff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px #000;
+}
+
+.info h3 {
+  text-align: left;
+  margin-left: 40px;
+  color: #fff;
+}
+
+.info {
+  box-sizing: border-box;
+  padding-top: 15px;
+  padding-bottom: 10%;
+  margin: 5% auto;
+  text-align: center;
+}
+
+.btn {
+  height: 30px;
+  width: 100px;
+  background: #fff;
+  border: 1px solid #0c0642;
+  border-radius: 20px;
+  color: slategrey;
+  text-transform: uppercase;
+  font-family: "Ubuntu", sans-serif;
+  cursor: pointer;
+}

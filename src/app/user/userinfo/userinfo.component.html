@@ -1,6 +1,7 @@
-<p>User Info!</p>
-<div><button (click)="onLogout()">logout</button></div>
-<div *ngIf="userInfo">
-  <div>{{ userInfo.firstName }}</div>
-  <div>{{ userInfo.lastName }}</div>
+<div class="main">
+  <div><button class="btn" (click)="onLogout()">logout</button></div>
+  <div class="info" *ngIf="userInfo">
+    <h3>First Name: {{ userInfo.firstName }}</h3>
+    <h3>Last Name: {{ userInfo.lastName }}</h3>
+  </div>
 </div>

@@ -39,7 +39,6 @@ export class AuthService {
         tap(tokenDetails => this.storeTokens(tokenDetails)),
         mapTo(true),
         catchError(error => {
-          alert(error.error);
           return of(false);
         })
       );

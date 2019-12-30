@@ -10,6 +10,7 @@ import { Router } from "@angular/router";
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
+  invalidCredentialError = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -28,15 +29,18 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    let f = this.loginForm.controls;
+    this.invalidCredentialError = false;
+    const form = this.loginForm.controls;
     this.authService
       .login({
-        username: f.username.value,
-        password: f.password.value
+        username: form.username.value,
+        password: form.password.value
       })
       .subscribe(success => {
         if (success) {
           this.router.navigate(["/user-info"]);
+        } else {
+          this.invalidCredentialError = true;
         }
       });
   }
