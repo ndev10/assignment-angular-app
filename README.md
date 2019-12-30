@@ -2,26 +2,16 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.21.
 
+## Build App
+Go to the main folder and run npm install first to install all the packages. It will genrate all the pacakges inside node_modules folder.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## Details
+Application has two main routes
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+http://localhost:4200/login and http://localhost:4200/user-info.. If user is not  log in then it will go to the login route. However if user is already login in, it will rediret to user-info route.
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+There is a token intercepor which takes care of token expration.. so if user hits user-info route and token is already expired, it will regenerate the token by hitting expire token api and hit the api again.. So all the thing happened behind the scene and user never needs to login again.
